@@ -9,14 +9,16 @@ import com.ozkan.weatherapp.domain.location.LocationTracker
 import android.Manifest
 import android.content.Context
 import android.location.LocationManager
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 import javax.inject.Inject
 import kotlin.coroutines.resume
 
+@ExperimentalCoroutinesApi
 class DefaultLocationTracker @Inject constructor(
     private val locationClient: FusedLocationProviderClient,
     private val application: Application
-) : LocationTracker {
+): LocationTracker {
 
     override suspend fun getCurrentLocation(): Location? {
         val hasAccessFineLocationPermission = ContextCompat.checkSelfPermission(
@@ -31,17 +33,16 @@ class DefaultLocationTracker @Inject constructor(
         val locationManager = application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) ||
                 locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-
-        if(!hasAccessCoarseLocationPermission||!hasAccessFineLocationPermission||!isGpsEnabled){
+        if(!hasAccessCoarseLocationPermission || !hasAccessFineLocationPermission || !isGpsEnabled) {
             return null
         }
 
-        return suspendCancellableCoroutine { cont->
+        return suspendCancellableCoroutine { cont ->
             locationClient.lastLocation.apply {
-                if(isComplete){
-                    if(isSuccessful){
+                if(isComplete) {
+                    if(isSuccessful) {
                         cont.resume(result)
-                    }else{
+                    } else {
                         cont.resume(null)
                     }
                     return@suspendCancellableCoroutine
@@ -49,7 +50,7 @@ class DefaultLocationTracker @Inject constructor(
                 addOnSuccessListener {
                     cont.resume(it)
                 }
-                addOnFailureListener{
+                addOnFailureListener {
                     cont.resume(null)
                 }
                 addOnCanceledListener {
