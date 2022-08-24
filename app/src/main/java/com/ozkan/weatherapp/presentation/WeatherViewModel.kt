@@ -48,7 +48,7 @@ class WeatherViewModel @Inject constructor(
             } ?: kotlin.run {
                 state = state.copy(
                     isLoading = false,
-                    error = "Konum alılamadı, izinleri kabul etiğinizi ve GPS açık oluduğundan emin olunuz"
+                    error = "Konum alınamadı, izinleri kabul ettiğiniziden ve GPS açık olduğundan emin olunuz"
                 )
             }
         }
