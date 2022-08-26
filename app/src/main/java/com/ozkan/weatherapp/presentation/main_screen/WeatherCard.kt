@@ -24,6 +24,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ozkan.weatherapp.R
+import com.ozkan.weatherapp.presentation.main_screen.WeatherState
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 

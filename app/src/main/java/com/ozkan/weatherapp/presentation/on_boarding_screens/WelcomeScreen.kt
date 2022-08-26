@@ -31,6 +31,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -46,7 +47,10 @@ import com.ozkan.weatherapp.presentation.util.OnBoardingPage
 @ExperimentalAnimationApi
 @ExperimentalPagerApi
 @Composable
-fun WelcomeScreen(navController: NavController) {
+fun WelcomeScreen(
+    navController: NavController,
+    welcomeViewModel: WelcomeViewModel = hiltViewModel()
+) {
     val pages = listOf(
         OnBoardingPage.First,
         OnBoardingPage.Second,
@@ -65,7 +69,7 @@ fun WelcomeScreen(navController: NavController) {
             state = pagerState,
             verticalAlignment = Alignment.Top
         ) { positoin ->
-            PagerScreen(onBoardingPage = pages[positoin], pagerState, navController)
+            PagerScreen(onBoardingPage = pages[positoin], pagerState, navController,welcomeViewModel)
         }
     }
 }
@@ -76,7 +80,8 @@ fun WelcomeScreen(navController: NavController) {
 fun PagerScreen(
     onBoardingPage: OnBoardingPage,
     pagerState: PagerState,
-    navController: NavController
+    navController: NavController,
+    welcomeViewModel: WelcomeViewModel
 ) {
     Column(
         modifier = Modifier
@@ -95,14 +100,14 @@ fun PagerScreen(
         Spacer(modifier = Modifier.weight(1f))
 
         Card(
-            elevation = 10.dp,
-            shape = RoundedCornerShape(20.dp),
+            elevation = 0.dp,
+            shape = RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp),
             modifier = Modifier
                 .align(Alignment.Start)
                 .animateContentSize(
                     tween(
-                        durationMillis = 1000,
-                        delayMillis = 100,
+                        durationMillis = 500,
+                        delayMillis = 10,
                         easing = LinearOutSlowInEasing
                     )
                 ),
@@ -133,6 +138,7 @@ fun PagerScreen(
                     modifier = Modifier,
                     pagerState = pagerState
                 ) {
+                    welcomeViewModel.saveOnBoardingState(completed = true)
                     navController.popBackStack()
                     navController.navigate(Screen.Home.route)
                 }

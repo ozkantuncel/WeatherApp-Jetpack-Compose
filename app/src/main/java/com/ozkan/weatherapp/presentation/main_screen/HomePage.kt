@@ -16,7 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ozkan.weatherapp.presentation.WeatherCard
 import com.ozkan.weatherapp.presentation.WeatherForecast
-import com.ozkan.weatherapp.presentation.WeatherViewModel
+import com.ozkan.weatherapp.presentation.main_screen.WeatherViewModel
 import com.ozkan.weatherapp.presentation.ui.theme.DarkBlue
 import com.ozkan.weatherapp.presentation.ui.theme.DeepBlue
 
