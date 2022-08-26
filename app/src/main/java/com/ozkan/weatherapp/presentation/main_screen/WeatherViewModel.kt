@@ -1,4 +1,4 @@
-package com.ozkan.weatherapp.presentation
+package com.ozkan.weatherapp.presentation.main_screen
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -48,7 +48,7 @@ class WeatherViewModel @Inject constructor(
             } ?: kotlin.run {
                 state = state.copy(
                     isLoading = false,
-                    error = "Konum alılamadı, izinleri kabul etiğinizi ve GPS açık oluduğundan emin olunuz"
+                    error = "Konum alınamadı, izinleri kabul ettiğiniziden ve GPS açık olduğundan emin olunuz"
                 )
             }
         }

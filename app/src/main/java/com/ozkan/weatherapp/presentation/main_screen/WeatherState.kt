@@ -1,4 +1,4 @@
-package com.ozkan.weatherapp.presentation
+package com.ozkan.weatherapp.presentation.main_screen
 
 import com.ozkan.weatherapp.domain.weather.WeatherInfo
 
