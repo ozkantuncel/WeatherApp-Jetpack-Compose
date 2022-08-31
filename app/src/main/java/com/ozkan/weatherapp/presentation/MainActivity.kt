@@ -13,6 +13,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.ozkan.weatherapp.navigation.SetupNavGraph
+import com.ozkan.weatherapp.presentation.main_screen.WeatherPerDayViewModel
 import com.ozkan.weatherapp.presentation.main_screen.WeatherViewModel
 import com.ozkan.weatherapp.presentation.splash_screen.SplashViewModel
 import com.ozkan.weatherapp.presentation.ui.theme.WeatherAppTheme
@@ -28,6 +29,9 @@ class MainActivity : ComponentActivity() {
     lateinit var splashViewModel: SplashViewModel
 
     private val viewModel: WeatherViewModel by viewModels()
+    private val viewModelPerDay: WeatherPerDayViewModel by viewModels()
+
+
     private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +40,7 @@ class MainActivity : ComponentActivity() {
             ActivityResultContracts.RequestMultiplePermissions()
         ) {
             viewModel.loadWeatherInfo()
+            viewModelPerDay.loadWeatherPerDayInfo()
         }
         permissionLauncher.launch(
             arrayOf(
@@ -52,7 +57,7 @@ class MainActivity : ComponentActivity() {
             WeatherAppTheme {
                 val screen by splashViewModel.startDestination
                 val navController = rememberNavController()
-                SetupNavGraph(navController = navController, startDestination = screen, viewModel)
+                SetupNavGraph(navController = navController, startDestination = screen, viewModel,viewModelPerDay)
             }
         }
     }

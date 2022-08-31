@@ -16,12 +16,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ozkan.weatherapp.presentation.WeatherCard
 import com.ozkan.weatherapp.presentation.WeatherForecast
+import com.ozkan.weatherapp.presentation.WeatherPerDayForecast
+import com.ozkan.weatherapp.presentation.main_screen.WeatherPerDayViewModel
 import com.ozkan.weatherapp.presentation.main_screen.WeatherViewModel
 import com.ozkan.weatherapp.presentation.ui.theme.DarkBlue
 import com.ozkan.weatherapp.presentation.ui.theme.DeepBlue
 
 @Composable
-fun HomePage(viewModel: WeatherViewModel){
+fun HomePage(viewModel: WeatherViewModel,viewmodelPerDay:WeatherPerDayViewModel){
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -29,12 +31,14 @@ fun HomePage(viewModel: WeatherViewModel){
                 .fillMaxSize()
                 .background(DarkBlue)
         ) {
-            WeatherCard(
+            /*WeatherCard(
                 state = viewModel.state,
                 backgroundColor = DeepBlue
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            WeatherForecast(state = viewModel.state)
+            )*/
+            WeatherPerDayForecast(viewmodelPerDay.state, modifier = Modifier)
+
+            //Spacer(modifier = Modifier.height(16.dp))
+            //WeatherForecast(state = viewModel.state)
         }
     }
     if (viewModel.state.isLoading) {
