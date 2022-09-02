@@ -6,8 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.ozkan.weatherapp.presentation.main_screen.WeatherPerDayViewModel
+import com.ozkan.weatherapp.presentation.main_screen.daily_weather_screen.WeatherPerDayViewModel
 import com.ozkan.weatherapp.presentation.main_screen.WeatherViewModel
+import com.ozkan.weatherapp.presentation.main_screen.daily_weather_screen.WeatherPerDayPage
 import com.ozkan.weatherapp.presentation.on_boarding_screens.HomePage
 import com.ozkan.weatherapp.presentation.on_boarding_screens.WelcomeScreen
 
@@ -28,7 +29,10 @@ fun SetupNavGraph(
             WelcomeScreen(navController = navController)
         }
         composable(route = Screen.Home.route) {
-            HomePage(viewModel,viewModelPerDay)
+            HomePage(viewModel,navController)
+        }
+        composable(route = Screen.DailyWeather.route){
+            WeatherPerDayPage(viewModelPerDay,viewModel)
         }
     }
 }

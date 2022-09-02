@@ -1,4 +1,4 @@
-package com.ozkan.weatherapp.presentation.main_screen
+package com.ozkan.weatherapp.presentation.main_screen.daily_weather_screen
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

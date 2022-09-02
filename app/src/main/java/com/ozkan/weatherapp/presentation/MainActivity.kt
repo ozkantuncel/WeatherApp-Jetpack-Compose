@@ -13,7 +13,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.ozkan.weatherapp.navigation.SetupNavGraph
-import com.ozkan.weatherapp.presentation.main_screen.WeatherPerDayViewModel
+import com.ozkan.weatherapp.presentation.main_screen.daily_weather_screen.WeatherPerDayViewModel
 import com.ozkan.weatherapp.presentation.main_screen.WeatherViewModel
 import com.ozkan.weatherapp.presentation.splash_screen.SplashViewModel
 import com.ozkan.weatherapp.presentation.ui.theme.WeatherAppTheme
