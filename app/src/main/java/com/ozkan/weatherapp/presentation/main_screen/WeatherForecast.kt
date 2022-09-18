@@ -8,11 +8,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.ozkan.weatherapp.navigation.Screen
 import com.ozkan.weatherapp.presentation.main_screen.WeatherState
-import java.time.format.DateTimeFormatter
+import com.ozkan.weatherapp.presentation.main_screen.daily_weather_screen.PerDayHourlyWeather
 
 @Composable
 fun WeatherForecast(
@@ -29,47 +26,36 @@ fun WeatherForecast(
     modifier: Modifier = Modifier,
     navController: NavController
 ) {
-    state.weatherInfo?.weatherDataPerDay?.get(0)?.let { data ->
 
-        Column(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = "Bügün",
-                    fontSize = 20.sp,
-                    color = Color.White
-                )
-                Text(
+            Text(
+                text = "Bügün",
+                fontSize = 20.sp,
+                color = Color.White
+            )
+            Text(
 
-                    text = "7 Günlük Hava Durumu",
-                    fontSize = 12.sp,
-                    color = Color.White,
-                    modifier = Modifier
-                        .align(Alignment.CenterVertically)
-                        .clickable
-                        {
-                            navController.navigate(Screen.DailyWeather.route)
-                        }
-                )
-            }
-            Spacer(modifier = modifier.height(16.dp))
-            LazyRow(content = {
-                items(data) { weatherData ->
-                    HourlyWeatherDisplay(
-                        weatherData = weatherData,
-                        modifier = Modifier
-                            .height(100.dp)
-                            .padding(horizontal = 16.dp)
-                    )
-                }
-            })
+                text = "7 Günlük Hava Durumu",
+                fontSize = 12.sp,
+                color = Color.White,
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+                    .clickable
+                    {
+                        navController.navigate(Screen.DailyWeather.route)
+                    }
+            )
         }
+        Spacer(modifier = modifier.height(16.dp))
+        PerDayHourlyWeather(state = state)
     }
 
 }
