@@ -6,8 +6,7 @@ import com.ozkan.weatherapp.domain.weather.WeatherPerData
 import com.ozkan.weatherapp.domain.weather.WeatherPerDayInfo
 import com.ozkan.weatherapp.domain.weather.WeatherType
 import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+ import java.time.format.DateTimeFormatter
 
 private data class IndexedWeatherPerDayData(
     val index: Int,

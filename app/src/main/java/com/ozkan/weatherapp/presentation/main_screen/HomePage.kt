@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ozkan.weatherapp.presentation.WeatherCard
 import com.ozkan.weatherapp.presentation.WeatherForecast
-import com.ozkan.weatherapp.presentation.main_screen.daily_weather_screen.WeatherPerDayViewModel
 import com.ozkan.weatherapp.presentation.main_screen.WeatherViewModel
 import com.ozkan.weatherapp.presentation.ui.theme.DarkBlue
 import com.ozkan.weatherapp.presentation.ui.theme.DeepBlue
@@ -27,6 +26,7 @@ fun HomePage(
     viewModel: WeatherViewModel,
     navController: NavController
 ) {
+
     if (viewModel.state.isLoading) {
         Box(
             contentAlignment = Alignment.Center,

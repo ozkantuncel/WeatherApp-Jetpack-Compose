@@ -5,8 +5,7 @@ import com.ozkan.weatherapp.data.mappers.toWeatherPerDayInfo
 import com.ozkan.weatherapp.data.remote.WeatherApi
 import com.ozkan.weatherapp.domain.repository.WeatherRepository
 import com.ozkan.weatherapp.domain.util.Resource
-import com.ozkan.weatherapp.domain.weather.WeatherData
-import com.ozkan.weatherapp.domain.weather.WeatherInfo
+ import com.ozkan.weatherapp.domain.weather.WeatherInfo
 import com.ozkan.weatherapp.domain.weather.WeatherPerDayInfo
 import java.lang.Exception
 import javax.inject.Inject

@@ -26,36 +26,38 @@ fun WeatherForecast(
     modifier: Modifier = Modifier,
     navController: NavController
 ) {
-
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp)
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+    state.weatherInfo?.weatherDataPerDay?.let {
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
         ) {
-            Text(
-                text = "Bügün",
-                fontSize = 20.sp,
-                color = Color.White
-            )
-            Text(
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Bügün",
+                    fontSize = 20.sp,
+                    color = Color.White
+                )
+                Text(
 
-                text = "7 Günlük Hava Durumu",
-                fontSize = 12.sp,
-                color = Color.White,
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .clickable
-                    {
-                        navController.navigate(Screen.DailyWeather.route)
-                    }
-            )
+                    text = "7 Günlük Hava Durumu",
+                    fontSize = 12.sp,
+                    color = Color.White,
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .clickable
+                        {
+                            navController.navigate(Screen.DailyWeather.route)
+                        }
+                )
+            }
+            Spacer(modifier = modifier.height(16.dp))
+            PerDayHourlyWeather(state = state)
         }
-        Spacer(modifier = modifier.height(16.dp))
-        PerDayHourlyWeather(state = state)
     }
+
 
 }
